@@ -37,7 +37,7 @@ Koan subclass: TestClass [
   "allSuperclasses"
 
   testName [
-    self expect: fillMeIn toEqual: HelloWorld name.
+    self expect: #HelloWorld toEqual: HelloWorld name.
   ]
 
   testPragmas [
@@ -49,25 +49,25 @@ Koan subclass: TestClass [
       shape of indexed instance variables.
     "
 
-    self expect: fillMeIn toEqual: HelloWorld comment.
-    self expect: fillMeIn toEqual: HelloWorld category.
+    self expect: 'This is a HelloWorld comment' toEqual: HelloWorld comment.
+    self expect: 'This is a HelloWorld category' toEqual: HelloWorld category.
   ]
 
   testInstanceVariableCollection [
-    self expect: fillMeIn toEqual: HelloWorld instVarNames.
+    self expect: #(#instanceVariable) toEqual: HelloWorld instVarNames.
   ]
 
   testInstSize [
-    self expect: fillMeIn toEqual: HelloWorld instSize.
-    self expect: fillMeIn toEqual: SubHelloWorld instSize.
+    self expect: 1 toEqual: HelloWorld instSize.
+    self expect: 3 toEqual: SubHelloWorld instSize.
   ]
 
   testClassInstanceVariableCollection [
-    self expect: fillMeIn toEqual: HelloWorld classVarNames asArray.
+    self expect: #(#Statement) toEqual: HelloWorld classVarNames asArray.
   ]
 
   testMessageCollection [
-    self expect: fillMeIn toEqual: HelloWorld selectors asArray.
+    self expect: #(#awesome #+ #say:) toEqual: HelloWorld selectors asArray.
   ]
 
   testSourceCodeAt [
@@ -86,20 +86,20 @@ Koan subclass: TestClass [
 
     helloWorld := HelloWorld new.
 
-    self expect: fillMeIn toEqual: HelloWorld allInstances asArray.
+    self expect: (Array new; with: helloWorld) toEqual: HelloWorld allInstances asArray.
   ]
 
   testSuperclass [
-    self expect: fillMeIn toEqual: HelloWorld superclass.
+    self expect: Object toEqual: HelloWorld superclass.
   ]
 
   testAllSuperclasses [
-    self expect: fillMeIn toEqual: SubHelloWorld allSuperclasses asArray.
+    self expect: (Array new; with: HelloWorld with: Object ) toEqual: SubHelloWorld allSuperclasses asArray.
 
     "Note: GNUSmalltalk is the namespace."
   ]
 
   testAllSubclasses [
-    self expect: fillMeIn toEqual: HelloWorld allSubclasses asArray.
+    self expect: (Array new; with: GNUSmalltalk.SubSubHelloWorld with: GNUSmalltalk.SubHelloWorld ) toEqual: HelloWorld allSubclasses asArray.
   ]
 ]
